@@ -3,11 +3,8 @@ function setup() {
     createCanvas(h*28/36, h); 
 }
 
-/Change this to false to mute all music (not reccomended)
 var music = false;
-//Change this to false to mute all sound effects
 var sound_effects = false;
-//Change this to false to mute the ghost siren (it could get annoying)
 var ghostSiren = false;
 
 var align = [0, 0];
