@@ -2407,7 +2407,7 @@ function draw() {
     }
 }
 
-var keys = [];
+var keys = new Array(100);
 function keyPressed() {
     keys[keyCode] = true;
     if(scene === "title" && keyCode === 32) {
