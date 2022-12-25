@@ -2119,11 +2119,7 @@ function draw() {
         }
         
         for(var i = 0; i < levelFruits.length; i++) {
-            if(width === 448 && height === 576) {
-                image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
-            } else {
-                image(images[74+levelFruits[i]], width-(i+2)*w*1.2, height-w, w, w);
-            }
+            image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
         }
         if(endTimer >= 200) {
             endTimer = 0;
@@ -2210,11 +2206,7 @@ function draw() {
         popMatrix();
         
         for(var i = 0; i < levelFruits.length; i++) {
-            if(width === 448 && height === 576) {
-                image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
-            } else {
-                image(images[74+levelFruits[i]], width-(i+2)*w*1.2, height-w, w, w);
-            }
+            image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
         }
         
         if(songNumber > 1) {
@@ -2324,11 +2316,7 @@ function draw() {
         popMatrix();
         
         for(var i = 0; i < levelFruits.length; i++) {
-            if(width === 448 && height === 576) {
-                image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
-            } else {
-                image(images[74+levelFruits[i]], width-(i+2)*w*1.2, height-w, w, w);
-            }
+            image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
         }
         if(songNumber > 1) {
             scene = "game";
@@ -2406,11 +2394,7 @@ function draw() {
         popMatrix();
         
         for(var i = 0; i < levelFruits.length; i++) {
-            if(width === 448 && height === 576) {
-                image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
-            } else {
-                image(images[74+levelFruits[i]], width-(i+2)*w*1.2, height-w, w, w);
-            }
+            image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
         }
         
         if(songNumber > 1) {
