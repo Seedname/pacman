@@ -944,11 +944,7 @@ var sketchProc = function(processingInstance) {
             }
 
             for(var i = 0; i < this.lives-1; i++) {
-                if(width === 448 && height === 576) {
-                    image(images[46], i*8/4*w + 2*11/8*w, w*34.25, 11/8*w, 11/8*w);
-                } else {
-                    image(images[46], i*1.5*w+w*2, height-w, w, w);
-                }
+                image(images[46], i*8/4*w + 2*11/8*w, w*34.25, 11/8*w, 11/8*w);
             }
         };
 
@@ -2121,11 +2117,7 @@ var sketchProc = function(processingInstance) {
             }
 
             for(var i = 0; i < levelFruits.length; i++) {
-                if(width === 448 && height === 576) {
-                    image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
-                } else {
-                    image(images[74+levelFruits[i]], width-(i+2)*w*1.2, height-w, w, w);
-                }
+                image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
             }
             if(endTimer >= 200) {
                 endTimer = 0;
@@ -2212,11 +2204,7 @@ var sketchProc = function(processingInstance) {
             popMatrix();
 
             for(var i = 0; i < levelFruits.length; i++) {
-                if(width === 448 && height === 576) {
-                    image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
-                } else {
-                    image(images[74+levelFruits[i]], width-(i+2)*w*1.2, height-w, w, w);
-                }
+                image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
             }
 
             if(songNumber > 1) {
@@ -2326,11 +2314,7 @@ var sketchProc = function(processingInstance) {
             popMatrix();
 
             for(var i = 0; i < levelFruits.length; i++) {
-                if(width === 448 && height === 576) {
-                    image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
-                } else {
-                    image(images[74+levelFruits[i]], width-(i+2)*w*1.2, height-w, w, w);
-                }
+                image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
             }
             if(songNumber > 1) {
                 scene = "game";
@@ -2408,11 +2392,7 @@ var sketchProc = function(processingInstance) {
             popMatrix();
 
             for(var i = 0; i < levelFruits.length; i++) {
-                if(width === 448 && height === 576) {
-                    image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
-                } else {
-                    image(images[74+levelFruits[i]], width-(i+2)*w*1.2, height-w, w, w);
-                }
+                image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
             }
 
             if(songNumber > 1) {
