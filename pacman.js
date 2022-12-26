@@ -187,12 +187,79 @@ function fontAlign(lAlign, rAlign) {
 
 var board = [28, 36];
 var w, textScale;
+var score = 0;
+var highScore = 0;
+
+var startTimer = 0;
+var startLength = 270;
+
+var frightTimer = 0;
+var frightLengths = [6*60, 5*60, 4*60, 3*60, 2*60, 5*60, 2*60, 2*60, 60, 5*60, 2*60, 60, 60, 3*60, 60, 60, 0, 60, 0];
+var flashes = [5, 5, 5, 5, 5, 5, 5, 5, 3, 5, 5, 3, 3, 5, 3, 3, 0, 3, 0];
+
+var frightFlashes = [];
+for(var i = 0; i < flashes.length; i++) {
+    frightFlashes.push(frightLengths[i] - flashes[i] * 20);
+}
+var frightLevel = 0;
+var fright = false;
+var pause = false;
+var pauseTimer = 0;
+var streak = 0;
+
+var preferred = 1;
+var globalDotCounter = 0;
+var useGlobalCounter = false;
+var globalDotTimer = 0;
+var globalDotLimit = [7, 17, 32];
+var dotLimits = [[0, 0, 0], [30, 0, 0], [60, 50, 0]];
+var pelletCounter = 0;
+
+var levelComplete = false;
+var endTimer = 0;
+
+var levelChooser = 0;
+var pacSpeed = [[0.8, 0.9], [0.9, 0.95], [1, 1], [0.9, 0.9]];
+var ghostSpeed = [[0.75, 0.5, 0.4], [0.85, 0.55, 0.45], [0.95, 0.6, 0.5], [0.95, 0.95, 0.5]];
+var scatterChase = [[420, 1200, 420, 1200, 300, 1200, 300], [420, 1200, 420, 1200, 300, 1033*60, 1], [420, 1200, 420, 1200, 300, 1037*60, 1]];
+var scatterChooser = 0;
+
+var scatterTimer = 0;
+var scatterMode = 0;
+var scatter = true;
+
+var fruits = [0, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7];
+var fruitPoints = [100, 300, 500, 700, 1000, 2000, 3000, 5000];
+var fruitChooser = 0;
+var fruit = false;
+var fruitTimer = 0;
+var fruitTimerLength = 0;
+var fruitCounter = 0;
+var fruitEaten = false;
+var levelFruits = [];
+var fruitPointsTimer = 0;
+
+var elroyLimit = [[204, 214], [194, 209], [184, 204], [174, 199], [164, 194], [144, 184], [124, 174], [104, 164]];
+//Elroy chooser: 1, 2, 3-5, 6-8, 9-11, 12-14, 15-18, 19+
+var elroySpeed = [[0.8, 0.85], [0.9, 0.95], [1, 1.05]];
+// var elroySpeed = [1.05, 1.1];
+//elroy speed chooser: 1, 2-4, 5+
+
+var elroyLimitChooser = 0;
+var elroySpeedChooser = 0;
+var elroyChooser = 0;
+var elroyEnabled = false;
+var elroyEnabled2 = true;
+
+var clydeChanged = false;
+var sirenMode = 0;
+var level = 1;
 function setup() {
     let h = window.innerHeight;
     createCanvas(h*28/36, h); 
     w = width/board[0];
     textScale =  w*28/400;
-    
+    fruitTimerLength = random(9, 10)*60;
 //Sprites {
 var closed = [[-16711936,-16711936,-16711936,-16711936,-256,-256,-256,-256,-256,-16711936,-16711936,-16711936,-16711936],[-16711936,-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936,-16711936],[-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936],[-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936],[-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256],[-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256],[-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256],[-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256],[-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256],[-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936],[-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936],[-16711936,-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936,-16711936],[-16711936,-16711936,-16711936,-16711936,-256,-256,-256,-256,-256,-16711936,-16711936,-16711936,-16711936]];
 var middle = [[-16711936,-16711936,-16711936,-16711936,-256,-256,-256,-256,-256,-16711936,-16711936,-16711936,-16711936],[-16711936,-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936,-16711936],[-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936],[-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936],[-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936,-16711936,-16711936],[-256,-256,-256,-256,-256,-256,-256,-16711936,-16711936,-16711936,-16711936,-16711936,-16711936],[-256,-256,-256,-256,-16711936,-16711936,-16711936,-16711936,-16711936,-16711936,-16711936,-16711936,-16711936],[-256,-256,-256,-256,-256,-256,-256,-16711936,-16711936,-16711936,-16711936,-16711936,-16711936],[-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936,-16711936,-16711936],[-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936],[-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936],[-16711936,-16711936,-256,-256,-256,-256,-256,-256,-256,-256,-256,-16711936,-16711936],[-16711936,-16711936,-16711936,-16711936,-256,-256,-256,-256,-256,-16711936,-16711936,-16711936,-16711936]];
@@ -454,75 +521,6 @@ for(var k = 0; k <= 1; k++) {
 function isInside(x1, y1, x, y, w, h) {
     return x1 >= x && x1 <= x+w && y1 >= y && y1 <= y+h;
 }
-//Global Variables {
-var score = 0;
-var highScore = 0;
-
-var startTimer = 0;
-var startLength = 270;
-
-var frightTimer = 0;
-var frightLengths = [6*60, 5*60, 4*60, 3*60, 2*60, 5*60, 2*60, 2*60, 60, 5*60, 2*60, 60, 60, 3*60, 60, 60, 0, 60, 0];
-var flashes = [5, 5, 5, 5, 5, 5, 5, 5, 3, 5, 5, 3, 3, 5, 3, 3, 0, 3, 0];
-
-var frightFlashes = [];
-for(var i = 0; i < flashes.length; i++) {
-    frightFlashes.push(frightLengths[i] - flashes[i] * 20);
-}
-var frightLevel = 0;
-var fright = false;
-var pause = false;
-var pauseTimer = 0;
-var streak = 0;
-
-var preferred = 1;
-var globalDotCounter = 0;
-var useGlobalCounter = false;
-var globalDotTimer = 0;
-var globalDotLimit = [7, 17, 32];
-var dotLimits = [[0, 0, 0], [30, 0, 0], [60, 50, 0]];
-var pelletCounter = 0;
-
-var levelComplete = false;
-var endTimer = 0;
-
-var levelChooser = 0;
-var pacSpeed = [[0.8, 0.9], [0.9, 0.95], [1, 1], [0.9, 0.9]];
-var ghostSpeed = [[0.75, 0.5, 0.4], [0.85, 0.55, 0.45], [0.95, 0.6, 0.5], [0.95, 0.95, 0.5]];
-var scatterChase = [[420, 1200, 420, 1200, 300, 1200, 300], [420, 1200, 420, 1200, 300, 1033*60, 1], [420, 1200, 420, 1200, 300, 1037*60, 1]];
-var scatterChooser = 0;
-
-var scatterTimer = 0;
-var scatterMode = 0;
-var scatter = true;
-
-var fruits = [0, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7];
-var fruitPoints = [100, 300, 500, 700, 1000, 2000, 3000, 5000];
-var fruitChooser = 0;
-var fruit = false;
-var fruitTimer = 0;
-var fruitTimerLength = random(9, 10)*60;
-var fruitCounter = 0;
-var fruitEaten = false;
-var levelFruits = [];
-var fruitPointsTimer = 0;
-
-var elroyLimit = [[204, 214], [194, 209], [184, 204], [174, 199], [164, 194], [144, 184], [124, 174], [104, 164]];
-//Elroy chooser: 1, 2, 3-5, 6-8, 9-11, 12-14, 15-18, 19+
-var elroySpeed = [[0.8, 0.85], [0.9, 0.95], [1, 1.05]];
-// var elroySpeed = [1.05, 1.1];
-//elroy speed chooser: 1, 2-4, 5+
-
-var elroyLimitChooser = 0;
-var elroySpeedChooser = 0;
-var elroyChooser = 0;
-var elroyEnabled = false;
-var elroyEnabled2 = true;
-
-var clydeChanged = false;
-var sirenMode = 0;
-var level = 1;
-//}
 
 function Song(song, rest, octave, speed, octave_shift, tone_shift, type, volume) {
     this.song = song;
