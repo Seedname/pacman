@@ -2429,7 +2429,7 @@ var sketchProc = function(processingInstance) {
     };
 
     var keys = [];
-    function keyPressed() {
+    keyPressed = function() {
         keys[keyCode] = true;
         if(scene === "title" && keyCode === 32) {
             scene = "title2";
@@ -2449,11 +2449,11 @@ var sketchProc = function(processingInstance) {
             pacman.controls([87,83,65,68], keys);
             pacman.controls([UP, DOWN, LEFT, RIGHT], keys);
         }
-    }
-    function keyReleased() {
+    };
+    keyReleased = function() {
         keys[keyCode] = false;
-    }
-    function mousePressed() {
+    };
+    mousePressed = function() {
         if(scene === "title") {
             scene = "title2";
             titleTime = 0;
@@ -2465,7 +2465,7 @@ var sketchProc = function(processingInstance) {
             titlePassed = false;
             titlePauseCounter = 0;
         }
-    }
+    };
 
   }};
    
