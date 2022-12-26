@@ -7,6 +7,7 @@ var sketchProc = function(processingInstance) {
         function radians(degrees) {
             return PI*degrees/180;
         }
+        var playCutscenes = false;
     var align = [0, 0];
     function font(text, x, y, size){
         var t1 = text + "";
