@@ -681,10 +681,10 @@ var sketchProc = function(processingInstance) {
 
         this.addScore = function(s) {
             if(score < 10000 && (score+s) >= 10000) {
-                if(music) {
-                    extraLife.reset();
-                    extraLife.play();
-                }
+//                 if(music) {
+//                     extraLife.reset();
+//                     extraLife.play();
+//                 }
                 this.lives ++;
             }
             score += s;
@@ -699,13 +699,13 @@ var sketchProc = function(processingInstance) {
                     fruitTimer = 0;
                     fruitTimerLength = random(9, 10) * 60;
 
-                    if(sound_effects) {
+//                     if(sound_effects) {
 //                         var eaten = getSound("retro/whistle1").audio.cloneNode(false);
 //                         eaten.currentTime = 0.3;
 //                         eaten.playbackRate = 2;
 //                         eaten.volume = 0.5;
 //                         eaten.play();
-                    }
+//                     }
                 }
             }
             for(var i = 0; i < ghosts.length; i++) {
@@ -719,11 +719,11 @@ var sketchProc = function(processingInstance) {
 
                     if(ghost.fright && !pause) {
                         if(!ghost.dead) {
-                            if(sound_effects) {
+//                             if(sound_effects) {
 //                                 var eaten = getSound("retro/jump2").audio.cloneNode(false);
 //                                 eaten.playbackRate = 0.3;
 //                                 eaten.play();
-                            }
+//                             }
                             ghost.dead = true;
                             ghost.fright = false;
                             ghost.gettingEaten = true;
@@ -806,17 +806,17 @@ var sketchProc = function(processingInstance) {
                 if(grid[j1][i1] !== 44 && grid[j1][i1] !== 45) {
                     globalDotTimer ++;
                 } else {
-                    if(sound_effects) {
-                        var note =  -15;
-                        if(pelletCounter % 2 === 0) {
-                            note = -12;
-                        }
+//                     if(sound_effects) {
+//                         var note =  -15;
+//                         if(pelletCounter % 2 === 0) {
+//                             note = -12;
+//                         }
 //                         var audio = getSound("retro/jump1").audio.cloneNode(false);
 //                         audio.currentTime = 0.17;
 //                         audio.playbackRate = pow(2, (note + 1 + 5) / 12);
 //                         audio.preservesPitch = false;
 //                         audio.play();
-                    }
+//                     }
                     globalDotTimer = 0;
                     pelletCounter ++;
                     if(preferred <= 3 && !useGlobalCounter) {
@@ -1750,14 +1750,14 @@ var sketchProc = function(processingInstance) {
                 note = -12;
             }
 
-            if((title2Audio === 0 || (title2Time > 10 && title2Audio === 1)) && sound_effects) {
+//             if((title2Audio === 0 || (title2Time > 10 && title2Audio === 1)) && sound_effects) {
 //                 var audio = getSound("retro/jump1").audio.cloneNode(false);
 //                 audio.currentTime = 0.17;
 //                 audio.playbackRate = pow(2, (note + 1 + 5) / 12);
 //                 audio.preservesPitch = false;
 //                 audio.play();
-                title2Audio ++;
-            }
+//                 title2Audio ++;
+//             }
 
             background(0);
             fill(255, 255, 255);
@@ -1801,12 +1801,12 @@ var sketchProc = function(processingInstance) {
                 highScore = score;
             }
 
-            if(extraLife.t > 0 && music) {
-                extraLife.play();
-                if(!extraLife.playing) {
-                    extraLife.reset();
-                }
-            }
+//             if(extraLife.t > 0 && music) {
+//                 extraLife.play();
+//                 if(!extraLife.playing) {
+//                     extraLife.reset();
+//                 }
+//             }
             if(pelletCounter === 244) {levelComplete = true;}
             if(!levelComplete || endTimer <= 100) {
                 image(backgrounds[0], 0, 0);
@@ -1825,10 +1825,10 @@ var sketchProc = function(processingInstance) {
             }
             if(startTimer <= startLength && startLength === 270) {
                 if(startTimer === 0) {over.reset(); under.reset(); adjustChoosers();}
-                if(music) {
-                    over.play();
-                    under.play();
-                }
+//                 if(music) {
+//                     over.play();
+//                     under.play();
+//                 }
             }
 
             fill(255, 255, 255);
@@ -1963,7 +1963,7 @@ var sketchProc = function(processingInstance) {
                 } 
                 var sirenMode = floor(8-log(244-pelletCounter)/log(2));
                 if(sirenMode > 4) {sirenMode = 4; }
-                if(frameCount % (30-4*sirenMode) === 0 && !fright && !pacman.dead && ghostSiren && !levelComplete) {
+//                 if(frameCount % (30-4*sirenMode) === 0 && !fright && !pacman.dead && ghostSiren && !levelComplete) {
 //                     var audio = getSound("retro/laser3").audio.cloneNode(false);
 //                     audio.currentTime = 0.2;
 //                     audio.volume = 0.3;
@@ -1971,7 +1971,7 @@ var sketchProc = function(processingInstance) {
 //                     audio.preservesPitch = false;
 //                     audio.play();
 
-                }
+//                 }
                 if(pacman.lives > 0 && !levelComplete) {
                     if(!pause) {
                         if(!fright) { scatterTimer ++; }
@@ -2067,25 +2067,25 @@ var sketchProc = function(processingInstance) {
                 font2(p, ghosts[eatenIndex].x-p.length*3*1.7*textScale, ghosts[eatenIndex].y-1.7*textScale*3, 1.7*textScale);
             }
 
-            if(deadGhost && sound_effects) {
-                if(frameCount % 20 === 0 && !pacman.dead && !levelComplete) {
+//             if(deadGhost && sound_effects) {
+//                 if(frameCount % 20 === 0 && !pacman.dead && !levelComplete) {
 //                     var floating = getSound("retro/laser3").audio.cloneNode(false);
 //                     floating.currentTime = 0;
 //                     floating.playbackRate = pow(2, 1/6);
 //                     floating.volume = 0.3;
 //                     floating.preservesPitch = false;
 //                     floating.play();
-                }
-            } else if(fright && sound_effects) {
-                if(frameCount % 10 === 0 && !pacman.dead && !levelComplete) {
+//                 }
+//             } else if(fright && sound_effects) {
+//                 if(frameCount % 10 === 0 && !pacman.dead && !levelComplete) {
 //                     var floating = getSound("retro/jump2").audio.cloneNode(false);
 //                     floating.currentTime = 0.1;
 //                     floating.playbackRate = 0.5;
 //                     floating.volume = 0.8;
 //                     floating.preservesPitch = false;
 //                     floating.play();
-                }
-            }
+//                 }
+//             }
 
             if(globalDotTimer >= 240 && leaveIndex > -1) {
                 ghosts[leaveIndex].canLeave = true;
@@ -2093,9 +2093,9 @@ var sketchProc = function(processingInstance) {
             }
 
             if (pacman.lives > 0) {
-                if(pacman.dead && pacman.deathAnimation >= 0 && music) {
-                    death.play();
-                }
+//                 if(pacman.dead && pacman.deathAnimation >= 0 && music) {
+//                     death.play();
+//                 }
                 pacman.display();
             } else if(startTimer >= startLength) {
                 reset(true);
@@ -2150,7 +2150,7 @@ var sketchProc = function(processingInstance) {
                 intermissionUnder.reset();
                 songNumber++;
             } else if(songNumber <= 1) {
-                if(!music) {intermission.volume = 0;intermissionUnder.volume=0;}
+//                 if(!music) {intermission.volume = 0;intermissionUnder.volume=0;}
                 intermission.play();
                 intermissionUnder.play();
             }
@@ -2239,7 +2239,7 @@ var sketchProc = function(processingInstance) {
                 intermissionUnder.reset();
                 songNumber++;
             } else if(songNumber <= 1) {
-                if(!music) {intermission.volume = 0;intermissionUnder.volume=0;}
+//                 if(!music) {intermission.volume = 0;intermissionUnder.volume=0;}
                 intermission.play();
                 intermissionUnder.play();
             }
@@ -2351,7 +2351,7 @@ var sketchProc = function(processingInstance) {
                 intermissionUnder.reset();
                 songNumber++;
             } else if(songNumber <= 1) {
-                if(!music) {intermission.volume = 0;intermissionUnder.volume=0;}
+//                 if(!music) {intermission.volume = 0;intermissionUnder.volume=0;}
                 intermission.play();
                 intermissionUnder.play();
             }
