@@ -327,7 +327,7 @@ for(var k = 0; k <= 1; k++) {
         for(var j = 0; j < grid[0].length; j++) {
             var num = grid[i][j];
             if(num !== 0) {
-                pushMatrix();
+                push();
                 translate(j*w+w/2, i*w+w/2);
                 if(num >= 1 && num <= 4) {
                     if(num === 2) {
@@ -440,7 +440,7 @@ for(var k = 0; k <= 1; k++) {
                 } else if(num === 47) {
                     image(images[97+2*k], -w/2, -w/2, w, w);
                 }
-                popMatrix();
+                pop();
             }    
         }
     }
@@ -898,7 +898,7 @@ function Pacman(x, y) {
             }
             
             if(!pause) { 
-                pushMatrix();
+                push();
                 translate(this.x, this.y);
                 if(startTimer >= startLength) {
                     if(d[0] === -1) {
@@ -914,10 +914,10 @@ function Pacman(x, y) {
                     num = 0;
                 }
                 image(images[num], -1.625*w/2, -1.625*w/2, w*1.625, w*1.625);
-                popMatrix();
+                pop();
             } 
         } else if(this.deathAnimation >= 0) {
-            pushMatrix();
+            push();
             translate(this.x, this.y);
             if(this.deathAnimation > 20) {
                 this.deathAnimation = -5;
@@ -942,7 +942,7 @@ function Pacman(x, y) {
             } else if(this.deathAnimation < 11) {
                 image(images[51 + floor(this.deathAnimation)], -1.625*w/2, -1.625*w/2 + w/4, w*1.625, w*1.625);
             } 
-            popMatrix();
+            pop();
         }
     
         for(var i = 0; i < this.lives-1; i++) {
@@ -1416,7 +1416,7 @@ function Ghost(x, y, type) {
         } else {
             num = 62;
         }
-        pushMatrix();
+        push();
         translate(this.x, this.y);
         
         if(!this.fright) {
@@ -1433,7 +1433,7 @@ function Ghost(x, y, type) {
         if(!((this.fright && pause && this.dead) || (pause && this.gettingEaten))) {
             image(images[num], -1.75*w/2, -1.75*w/2, w*1.75, w*1.75);
         }
-        popMatrix();
+        pop();
     };
 }
 
@@ -1686,7 +1686,7 @@ function draw() {
                     }
                 }
                 
-                pushMatrix();
+                push();
                 translate(titleGhostX, w*19.5);
                 
                 if(!titleAteOrb) {
@@ -1698,7 +1698,7 @@ function draw() {
                 if(!(pause && i === titlePauseCounter-1)) {
                     image(images[num], -1.75*w/2+2*w*i, -1.75*w/2, w*1.75, w*1.75);
                 } 
-                popMatrix();
+                pop();
             }
 
             for(var i = 0; i < 4; i++) {
@@ -1718,7 +1718,7 @@ function draw() {
                 num = 2 - (t % 3);
             }
             
-            pushMatrix();
+            push();
             translate(titlePacX, w*20.25);
             if(titlePacVX < 0) {
                 scale(-1, 1);
@@ -1726,7 +1726,7 @@ function draw() {
             if(!pause) {
                 image(images[num], -1.625*w/2, -1.625*w, w*1.625, w*1.625);
             }
-            popMatrix();
+            pop();
             
             if(titlePassed && titlePacX > width) {
                 scene = "title2";
@@ -1793,7 +1793,7 @@ function draw() {
         fill(255, 184, 255);
         font("BY JULIAN D", width/2, w*29, 1.75*textScale);
         fill(255, 0, 0);
-        popMatrix();
+        pop();
     } else if(scene === "game") {
         if(score > highScore) {
             highScore = score;
@@ -1921,7 +1921,7 @@ function draw() {
             for(var j = 0; j < grid[0].length; j++) {
                 var num = grid[i][j];
                 if(num !== 0) {
-                    pushMatrix();
+                    push();
                     translate(j*w+w/2, i*w+w/2);
                      if(num === 43 && endTimer <= 100) {
                         image(images[11], -w/2, -w/2, w, w);
@@ -1936,7 +1936,7 @@ function draw() {
                             image(images[13], -w/2, -w/2, w, w);
                         }
                     }
-                    popMatrix();
+                    pop();
                 }    
             }
         }
@@ -2170,7 +2170,7 @@ function draw() {
         }
 
         if(third) { num += 82; }
-        pushMatrix();
+        push();
         translate(interPacX, height/2+1.625*w/2);
         if(interPacVX < 0) {
             scale(-1, 1);
@@ -2180,7 +2180,7 @@ function draw() {
         } else {
             image(images[num], -2*w, -4*w, w*4, w*4);
         }
-        popMatrix();
+        pop();
         
         var num = 14;
         if(second) {
@@ -2195,7 +2195,7 @@ function draw() {
             }
         }
 
-        pushMatrix();
+        push();
         translate(interGhostX, height/2+1.625*w/2);
         
         if(interGhostVX < 0) {
@@ -2203,7 +2203,7 @@ function draw() {
         }
 
         image(images[num], -1.75*w/2, -1.75*w, w*1.75, w*1.75);
-        popMatrix();
+        pop();
         
         for(var i = 0; i < levelFruits.length; i++) {
             image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
@@ -2283,14 +2283,14 @@ function draw() {
         } else {
             num = 2 - (t % 3);
         }
-        pushMatrix();
+        push();
         translate(interPacX, height/2+1.625*w/2);
         if(interPacVX < 0) {
             scale(-1, 1);
         }
 
         image(images[num], -1.625*w/2, -1.625*w, w*1.625, w*1.625);
-        popMatrix();
+        pop();
         
         
         var num = 14;
@@ -2300,7 +2300,7 @@ function draw() {
             }
         }
         
-        pushMatrix();
+        push();
         translate(interGhostX, height/2+1.625*w/2);
 
         if(songNumber === 0) {
@@ -2313,7 +2313,7 @@ function draw() {
             if(fifth) { n = 93; }
             image(images[n], -1.75*w/2, -1.75*w, w*1.75, w*1.75);
         }
-        popMatrix();
+        pop();
         
         for(var i = 0; i < levelFruits.length; i++) {
             image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
@@ -2364,13 +2364,13 @@ function draw() {
             num = 2 - (t % 3);
         }
 
-        pushMatrix();
+        push();
         translate(interPacX, height/2+1.625*w/2);
         if(interPacVX < 0) {
             scale(-1, 1);
         }
         image(images[num], -1.625*w/2, -1.625*w, w*1.625, w*1.625);
-        popMatrix();
+        pop();
         
         var num = 90;
         if(second) {
@@ -2384,14 +2384,14 @@ function draw() {
             }
         }
     
-        pushMatrix();
+        push();
         translate(interGhostX, height/2+1.625*w/2);
         if(!second) {
             image(images[num], -1.75*w/2, -1.75*w, w*1.75, w*1.75);
         } else {
             image(images[num], -21/8*w/2, -21/8*w, w*21/8, w*21/8);
         }
-        popMatrix();
+        pop();
         
         for(var i = 0; i < levelFruits.length; i++) {
             image(images[74+levelFruits[i]], width-(i*14/8*w+2*14/8*w), w*34.25, 13/8*w, 13/8*w);
@@ -2411,6 +2411,7 @@ function draw() {
 }
 
 var keys = new Array(100);
+keyCode = 0;
 function keyPressed() {
     keys[keyCode] = true;
     if(scene === "title" && keyCode === 32) {
